@@ -4,7 +4,13 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sync"
 )
+
+var state map[string]WorkLog
+var mutex *sync.Mutex
+var worklogs []WorkLog
+var cnFacts []string
 
 func main() {
 	if len(os.Args) != 2 {
@@ -14,6 +20,10 @@ func main() {
 
 	// start a cancel channel
 	cancel := make(chan Message)
+	state = make(map[string]WorkLog)
+	worklogs = make([]WorkLog, 1)
+	cnFacts = getCnFacts()
+	mutex = &sync.Mutex{}
 	ws, id := slackConnect(os.Args[1])
 	fmt.Println("hibot is ready to rock, ^C")
 
