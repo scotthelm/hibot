@@ -1,0 +1,22 @@
+{
+	"version": 0,
+	"dependencies": [
+		{
+			"importpath": "github.com/rapidloop/mybot",
+			"repository": "https://github.com/rapidloop/mybot",
+			"vcs": "git",
+			"revision": "2777401b233f3195e56ff83bed3c65f16319f206",
+			"branch": "master",
+			"notests": true
+		},
+		{
+			"importpath": "golang.org/x/net/websocket",
+			"repository": "https://go.googlesource.com/net",
+			"vcs": "git",
+			"revision": "d379faa25cbdc04d653984913a2ceb43b0bc46d7",
+			"branch": "master",
+			"path": "/websocket",
+			"notests": true
+		}
+	]
+}
