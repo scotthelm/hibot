@@ -24,6 +24,7 @@ func main() {
 	worklogs = make([]WorkLog, 1)
 	cnFacts = getCnFacts()
 	mutex = &sync.Mutex{}
+
 	ws, id := slackConnect(os.Args[1])
 	fmt.Println("hibot is ready to rock, ^C")
 

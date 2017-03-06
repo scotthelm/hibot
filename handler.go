@@ -19,14 +19,16 @@ func handleMessage(ws *websocket.Conn, id string, m Message, cancel chan Message
 				postMessage(ws, m)
 			}(m)
 			// NOTE: the Message object is copied, this is intentional
-		} else if len(parts) == 4 && parts[1] == "timer" && parts[2] == "start" {
+		} else if len(parts) == 5 && parts[1] == "timer" && parts[2] == "start" {
 			go func(m Message) {
 				doTimer(ws, m, cancel)
 			}(m)
-
 		} else if len(parts) == 3 && parts[1] == "timer" && parts[2] == "stop" {
 			cancel <- m
-
+		} else if len(parts) == 3 && parts[1] == "timer" && parts[2] == "report" {
+			go func(m Message) {
+				timerReport(ws, m)
+			}(m)
 		} else if len(parts) >= 2 && parts[1] == "chuck" {
 			go func(m Message) {
 				doChuckNorris(ws, m)
